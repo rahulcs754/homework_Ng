@@ -43,3 +43,25 @@ changeStuff(num, obj1, obj2);
 console.log(num);
 console.log(obj1.item);
 console.log(obj2.item);
+
+
+/*
+Home one from lms 
+composition
+*/
+
+
+const increment = num => num +1 ;
+const decrement = num => num - 1 ;
+const square   = num => num *num;
+
+const compose  = (...args) => {
+   const composer = (argument) => {
+   console.log(args.reduce((acc,curr)=> curr(acc) ,argument));
+  }
+  return  composer;
+}
+
+
+const value  = compose(increment,decrement,square);
+value(2);

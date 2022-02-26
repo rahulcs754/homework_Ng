@@ -60,12 +60,13 @@ const family = [
 
 console.log(family.filter( f => f.haveCycle ).map(m => m.name ));
 
-const f = family.reduce( ( acc, val ) => { 
-    if ( val.haveCycle) { acc.push(val.name); }
+const f = family.reduce( ( acc, val ) => {  
+  console.log(val.name);
+    val.haveCycle ? [...acc,val.name]:[...acc] ;
     return acc;
  } ,[] );
 
-console.log(  f  );
+console.log( f  );
  
 
 /*
@@ -399,3 +400,33 @@ Object.freeze(lp);
 lp.rahul = 85;
 lp
 
+/* Check give value is alphanumeric or not */
+
+function isAlphaNumeric ( str ) {
+
+  for ( let i = 0, len = str.length, code = 0; i < len; ++i ) {
+
+    code = str.charCodeAt( i ); 
+
+    if (
+        ( code > 47 && code < 58) // numeric (0-9)
+        || ( code > 64 && code < 91) // upper alpha (A-Z)
+        || ( code > 96 && code < 123 ) // lower alpha (a-z)
+    ) {
+      continue;
+    } 
+
+    return false
+  }
+
+  return true;
+};
+
+console.log(isAlphaNumeric("oye"));
+console.log(isAlphaNumeric("oye123"));
+console.log(isAlphaNumeric("oye%123"));
+
+
+/* using regular expression */
+var regExp = /^[A-Za-z0-9]+$/;
+console.log("1321arm".match(regExp));
